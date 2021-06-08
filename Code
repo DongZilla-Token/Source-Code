@@ -1,0 +1,244 @@
+#
+#  Panoramix v4 Oct 2019 
+#  Decompiled source of bsc:0xC07BD01b36f06483F129c523A46872A722A38dd7
+#  Original at https://bscscan.com/address/0xc07bd01b36f06483f129c523a46872a722a38dd7#code
+#  Let's make the world open source 
+# 
+
+def storage:
+  balances is mapping of uint256 at storage 0
+  allowance is mapping of uint256 at storage 1
+  totalSupply is uint256 at storage 2
+  stor3 is array of struct at storage 3
+  stor4 is array of struct at storage 4
+  decimals is uint256 at storage 5
+
+def totalSupply() payable: 
+  return totalSupply
+
+def balances(address _param1) payable: 
+  require calldata.size - 4 >=′ 32
+  require _param1 == _param1
+  return balances[_param1]
+
+def decimals() payable: 
+  return decimals
+
+def balanceOf(address _owner) payable: 
+  require calldata.size - 4 >=′ 32
+  require _owner == _owner
+  return balances[addr(_owner)]
+
+def allowance(address _owner, address _spender) payable: 
+  require calldata.size - 4 >=′ 64
+  require _owner == _owner
+  require _spender == _spender
+  return allowance[_owner][_spender]
+
+#
+#  Regular functions
+#
+
+def _fallback() payable: # default function
+  revert
+
+def approve(address _spender, uint256 _value) payable: 
+  require calldata.size - 4 >=′ 64
+  require _spender == _spender
+  require _value == _value
+  allowance[caller][addr(_spender)] = _value
+  log Approval(
+        address owner=_value,
+        address spender=caller,
+        uint256 value=_spender)
+  return 1
+
+def transfer(address _to, uint256 _value) payable: 
+  require calldata.size - 4 >=′ 64
+  require _to == _to
+  require _value == _value
+  if balances[caller] < _value:
+      revert with 0, 'Balance is too low.'
+  if balances[addr(_to)] > -_value - 1:
+      revert with 'NH{q', 17
+  balances[addr(_to)] += _value
+  if balances[caller] < _value:
+      revert with 'NH{q', 17
+  balances[caller] -= _value
+  log Transfer(
+        address from=_value,
+        address to=caller,
+        uint256 value=_to)
+  return 1
+
+def transferFrom(address _from, address _to, uint256 _value) payable: 
+  require calldata.size - 4 >=′ 96
+  require _from == _from
+  require _to == _to
+  require _value == _value
+  if balances[addr(_from)] < _value:
+      revert with 0, 'Balance is too low.'
+  if allowance[addr(_from)][caller] < _value:
+      revert with 0, 'Allowance too low.'
+  if balances[addr(_to)] > -_value - 1:
+      revert with 'NH{q', 17
+  balances[addr(_to)] += _value
+  if balances[addr(_from)] < _value:
+      revert with 'NH{q', 17
+  balances[addr(_from)] -= _value
+  log Transfer(
+        address from=_value,
+        address to=_from,
+        uint256 value=_to)
+  return 1
+
+def name() payable: 
+  if bool(stor3.length):
+      if bool(stor3.length) == stor3.length.field_1 < 32:
+          revert with 'NH{q', 34
+      if bool(stor3.length):
+          if bool(stor3.length) == stor3.length.field_1 < 32:
+              revert with 'NH{q', 34
+          if stor3.length.field_1:
+              if 31 < stor3.length.field_1:
+                  mem[128] = uint256(stor3.field_0)
+                  idx = 128
+                  s = 0
+                  while stor3.length.field_1 + 96 > idx:
+                      mem[idx + 32] = stor3[s].field_256
+                      idx = idx + 32
+                      s = s + 1
+                      continue 
+                  return Array(len=2 * Mask(256, -1, stor3.length.field_1), data=mem[128 len ceil32(stor3.length.field_1)])
+              mem[128] = 256 * stor3.length.field_8
+      else:
+          if bool(stor3.length) == stor3.length.field_1 < 32:
+              revert with 'NH{q', 34
+          if stor3.length.field_1:
+              if 31 < stor3.length.field_1:
+                  mem[128] = uint256(stor3.field_0)
+                  idx = 128
+                  s = 0
+                  while stor3.length.field_1 + 96 > idx:
+                      mem[idx + 32] = stor3[s].field_256
+                      idx = idx + 32
+                      s = s + 1
+                      continue 
+                  return Array(len=2 * Mask(256, -1, stor3.length.field_1), data=mem[128 len ceil32(stor3.length.field_1)])
+              mem[128] = 256 * stor3.length.field_8
+      mem[ceil32(stor3.length.field_1) + 192 len ceil32(stor3.length.field_1)] = mem[128 len ceil32(stor3.length.field_1)]
+      if ceil32(stor3.length.field_1) > stor3.length.field_1:
+          mem[ceil32(stor3.length.field_1) + stor3.length.field_1 + 192] = 0
+      return Array(len=2 * Mask(256, -1, stor3.length.field_1), data=mem[128 len ceil32(stor3.length.field_1)], mem[(2 * ceil32(stor3.length.field_1)) + 192 len 2 * ceil32(stor3.length.field_1)]), 
+  if bool(stor3.length) == stor3.length.field_1 < 32:
+      revert with 'NH{q', 34
+  if bool(stor3.length):
+      if bool(stor3.length) == stor3.length.field_1 < 32:
+          revert with 'NH{q', 34
+      if stor3.length.field_1:
+          if 31 < stor3.length.field_1:
+              mem[128] = uint256(stor3.field_0)
+              idx = 128
+              s = 0
+              while stor3.length.field_1 + 96 > idx:
+                  mem[idx + 32] = stor3[s].field_256
+                  idx = idx + 32
+                  s = s + 1
+                  continue 
+              return Array(len=stor3.length % 128, data=mem[128 len ceil32(stor3.length.field_1)])
+          mem[128] = 256 * stor3.length.field_8
+  else:
+      if bool(stor3.length) == stor3.length.field_1 < 32:
+          revert with 'NH{q', 34
+      if stor3.length.field_1:
+          if 31 < stor3.length.field_1:
+              mem[128] = uint256(stor3.field_0)
+              idx = 128
+              s = 0
+              while stor3.length.field_1 + 96 > idx:
+                  mem[idx + 32] = stor3[s].field_256
+                  idx = idx + 32
+                  s = s + 1
+                  continue 
+              return Array(len=stor3.length % 128, data=mem[128 len ceil32(stor3.length.field_1)])
+          mem[128] = 256 * stor3.length.field_8
+  mem[ceil32(stor3.length.field_1) + 192 len ceil32(stor3.length.field_1)] = mem[128 len ceil32(stor3.length.field_1)]
+  if ceil32(stor3.length.field_1) > stor3.length.field_1:
+      mem[ceil32(stor3.length.field_1) + stor3.length.field_1 + 192] = 0
+  return Array(len=stor3.length % 128, data=mem[128 len ceil32(stor3.length.field_1)], mem[(2 * ceil32(stor3.length.field_1)) + 192 len 2 * ceil32(stor3.length.field_1)]), 
+
+def symbol() payable: 
+  if bool(stor4.length):
+      if bool(stor4.length) == stor4.length.field_1 < 32:
+          revert with 'NH{q', 34
+      if bool(stor4.length):
+          if bool(stor4.length) == stor4.length.field_1 < 32:
+              revert with 'NH{q', 34
+          if stor4.length.field_1:
+              if 31 < stor4.length.field_1:
+                  mem[128] = uint256(stor4.field_0)
+                  idx = 128
+                  s = 0
+                  while stor4.length.field_1 + 96 > idx:
+                      mem[idx + 32] = stor4[s].field_256
+                      idx = idx + 32
+                      s = s + 1
+                      continue 
+                  return Array(len=2 * Mask(256, -1, stor4.length.field_1), data=mem[128 len ceil32(stor4.length.field_1)])
+              mem[128] = 256 * stor4.length.field_8
+      else:
+          if bool(stor4.length) == stor4.length.field_1 < 32:
+              revert with 'NH{q', 34
+          if stor4.length.field_1:
+              if 31 < stor4.length.field_1:
+                  mem[128] = uint256(stor4.field_0)
+                  idx = 128
+                  s = 0
+                  while stor4.length.field_1 + 96 > idx:
+                      mem[idx + 32] = stor4[s].field_256
+                      idx = idx + 32
+                      s = s + 1
+                      continue 
+                  return Array(len=2 * Mask(256, -1, stor4.length.field_1), data=mem[128 len ceil32(stor4.length.field_1)])
+              mem[128] = 256 * stor4.length.field_8
+      mem[ceil32(stor4.length.field_1) + 192 len ceil32(stor4.length.field_1)] = mem[128 len ceil32(stor4.length.field_1)]
+      if ceil32(stor4.length.field_1) > stor4.length.field_1:
+          mem[ceil32(stor4.length.field_1) + stor4.length.field_1 + 192] = 0
+      return Array(len=2 * Mask(256, -1, stor4.length.field_1), data=mem[128 len ceil32(stor4.length.field_1)], mem[(2 * ceil32(stor4.length.field_1)) + 192 len 2 * ceil32(stor4.length.field_1)]), 
+  if bool(stor4.length) == stor4.length.field_1 < 32:
+      revert with 'NH{q', 34
+  if bool(stor4.length):
+      if bool(stor4.length) == stor4.length.field_1 < 32:
+          revert with 'NH{q', 34
+      if stor4.length.field_1:
+          if 31 < stor4.length.field_1:
+              mem[128] = uint256(stor4.field_0)
+              idx = 128
+              s = 0
+              while stor4.length.field_1 + 96 > idx:
+                  mem[idx + 32] = stor4[s].field_256
+                  idx = idx + 32
+                  s = s + 1
+                  continue 
+              return Array(len=stor4.length % 128, data=mem[128 len ceil32(stor4.length.field_1)])
+          mem[128] = 256 * stor4.length.field_8
+  else:
+      if bool(stor4.length) == stor4.length.field_1 < 32:
+          revert with 'NH{q', 34
+      if stor4.length.field_1:
+          if 31 < stor4.length.field_1:
+              mem[128] = uint256(stor4.field_0)
+              idx = 128
+              s = 0
+              while stor4.length.field_1 + 96 > idx:
+                  mem[idx + 32] = stor4[s].field_256
+                  idx = idx + 32
+                  s = s + 1
+                  continue 
+              return Array(len=stor4.length % 128, data=mem[128 len ceil32(stor4.length.field_1)])
+          mem[128] = 256 * stor4.length.field_8
+  mem[ceil32(stor4.length.field_1) + 192 len ceil32(stor4.length.field_1)] = mem[128 len ceil32(stor4.length.field_1)]
+  if ceil32(stor4.length.field_1) > stor4.length.field_1:
+      mem[ceil32(stor4.length.field_1) + stor4.length.field_1 + 192] = 0
+  return Array(len=stor4.length % 128, data=mem[128 len ceil32(stor4.length.field_1)], mem[(2 * ceil32(stor4.length.field_1)) + 192 len 2 * ceil32(stor4.length.field_1)]), 
+
